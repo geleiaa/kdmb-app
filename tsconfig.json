@@ -14,7 +14,14 @@
     "strict": true,                                     
     "noImplicitAny": false,                          
     "skipLibCheck": true,
-    "types": ["reflect-metadata","node", "jest"]                                
+    "types": ["reflect-metadata","node", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@models/*": ["./src/models/*"],
+      "@providers/*": ["./src/providers/*"],
+      "@repositories/*": ["./src/repositories/*"],
+      "@services/*": ["./src/services/*"],
+    },                               
   },
   "include": [
     "src/**/*.ts"
