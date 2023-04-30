@@ -7,9 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rm -rf ./dist",
-    "build": "tsc -p tsconfig.build.json",
-    "dev": "tsnd ./src/main.ts",
-    "prod": "node ./dist/main.js",
+    "build": "tsc -p tsconfig.build.json && cp -R ./register-path.js tsconfig.build.json package.json ./dist",
+    "dev": "tsnd -r dotenv/config -r tsconfig-paths/register ./src/main.ts",
+    "prod": "node -r dotenv/config -r ./dist/register-path.js ./dist/src/main.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
@@ -25,7 +25,8 @@
     "inversify-binding-decorators": "^4.0.0",
     "inversify-express-utils": "^6.3.2",
     "mongoose": "^7.1.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "tsconfig-paths": "^4.1.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
