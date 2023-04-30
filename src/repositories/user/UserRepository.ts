@@ -1,10 +1,14 @@
-import { FilterQuery, Model } from "mongoose";
-import { IBaseRepository } from "./IBaseRepository";
+import { Model } from "mongoose";
+import { FilterOptions, IUserRepository } from "./IUserRepository";
+import { ICreateUser } from "./dto/ICreateUserDTO";
+import { IUser } from "@models/Users";
+import { provide } from "inversify-binding-decorators";
 
-export class BaseRepository<T> implements IBaseRepository<T>{
-    constructor(protected model = Model<T>) { }
+@provide(UserRepository)
+export class UserRepository implements IUserRepository<IUser> {
+    constructor(protected model = Model) { }
 
-    async create(data: T): Promise<T | null> {
+    async create(data: ICreateUser): Promise<IUser | null> {
         try {
             const model = new this.model(data)
             const createUser = await model.save();
@@ -16,7 +20,7 @@ export class BaseRepository<T> implements IBaseRepository<T>{
         }
     }
 
-    async findAll(query: FilterQuery<T>): Promise<T[]> {
+    async findAll(query: FilterOptions): Promise<IUser[]> {
         try {
             const users = await this.model.find(query);
             return users;
@@ -27,7 +31,7 @@ export class BaseRepository<T> implements IBaseRepository<T>{
         }
     }
 
-    async findById(id: string): Promise<T | null> {
+    async findById(id: string): Promise<IUser | null> {
         try {
             return await this.model.findOne({ id });
 
@@ -38,7 +42,7 @@ export class BaseRepository<T> implements IBaseRepository<T>{
         }
     }
 
-    async findByEmail(email: string): Promise<T | null> {
+    async findByEmail(email: string): Promise<IUser | null> {
         try {
             return await this.model.findOne({ email })
 

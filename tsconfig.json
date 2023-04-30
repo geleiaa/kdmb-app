@@ -3,6 +3,7 @@
     "module": "commonjs",                             
     "target": "ES2017",
     "declaration": true,
+    "outDir": "./dist",
     "removeComments": true,                               
     "experimentalDecorators": true,                   
     "emitDecoratorMetadata": true,                    
@@ -17,11 +18,13 @@
     "types": ["reflect-metadata","node", "jest"],
     "baseUrl": ".",
     "paths": {
+      "@controllers/*": ["./src/controllers/*"],
       "@models/*": ["./src/models/*"],
       "@providers/*": ["./src/providers/*"],
       "@repositories/*": ["./src/repositories/*"],
       "@services/*": ["./src/services/*"],
-    },                               
+      "@useCases/*": ["./src/useCases/*"]
+    },                         
   },
   "include": [
     "src/**/*.ts"

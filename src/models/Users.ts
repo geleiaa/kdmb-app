@@ -1,10 +1,13 @@
 import { Schema, model } from "mongoose";
 import { IBaseModel } from "./IBaseModel";
 
-export interface IUser extends IBaseModel {
+export interface IUser extends IBaseModel{
+    // id: string;
     name: string;
     email: string;
     password: string;
+    // createdAt: Date;
+    // updatedAt: Date;
 }
 
 const userSchema = new Schema<IUser>(

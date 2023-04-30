@@ -1,12 +1,14 @@
 //import { AppContainer } from "@expressots/core";
-import { AppModule } from "./app.module";
+import { Container } from "inversify";
+import { UserModule } from "./app.module";
+import { buildProviderModule } from "inversify-binding-decorators";
 
 //const appContainer = new AppContainer();
+const container = new Container();
 
-const container = appContainer.create([
-    // Add your modules here
-    // add users modules
-    AppModule,
-]);
+container.load(
+    buildProviderModule(),
+    UserModule,
+);
 
 export { container };
