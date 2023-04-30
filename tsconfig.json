@@ -8,25 +8,24 @@
     "experimentalDecorators": true,                   
     "emitDecoratorMetadata": true,                    
     "resolveJsonModule": true,                        
-    "sourceMap": true,                                
-    "rootDir": "./src",                                   
+    "sourceMap": false,                                
+    "rootDir": ".",                                   
     "esModuleInterop": true,                            
     "forceConsistentCasingInFileNames": true,           
     "strict": true,                                     
     "noImplicitAny": false,                          
     "skipLibCheck": true,
     "types": ["reflect-metadata","node", "jest"],
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@controllers/*": ["./src/controllers/*"],
-      "@models/*": ["./src/models/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@repositories/*": ["./src/repositories/*"],
-      "@services/*": ["./src/services/*"],
-      "@useCases/*": ["./src/useCases/*"]
+      "@entities/*": ["entities/*"],
+      "@providers/*": ["providers/*"],
+      "@repositories/*": ["repositories/*"],
+      "@useCases/*": ["useCases/*"]
     },                         
   },
   "include": [
+    ".",
     "src/**/*.ts"
   ],
   "exclude": [

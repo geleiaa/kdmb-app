@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { FilterOptions, IUserRepository } from "./IUserRepository";
 import { ICreateUser } from "./dto/ICreateUserDTO";
-import { IUser } from "@models/Users";
+import { IUser } from "@entities/Users";
 import { provide } from "inversify-binding-decorators";
 
 @provide(UserRepository)

@@ -1,4 +1,4 @@
-import { IBusao, busModel } from "../../models/Busao";
+import { IBusao, busModel } from "../../entities/Busao";
 
 export class BusaoRepository extends IBusaoRepository<IBusao> {
     constructor() {

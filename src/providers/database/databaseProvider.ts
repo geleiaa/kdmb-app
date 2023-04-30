@@ -1,7 +1,8 @@
 import 'dotenv/config';
+import { provide } from 'inversify-binding-decorators';
 import mongoose from "mongoose";
 
-
+@provide(DataBaseProvider)
 class DataBaseProvider {
 
     async Connect(): Promise<void> {

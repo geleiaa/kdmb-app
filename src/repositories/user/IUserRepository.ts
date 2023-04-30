@@ -1,4 +1,4 @@
-import { IUser } from "@models/Users";
+import { IUser } from "@entities/Users";
 import { ICreateUser } from "./dto/ICreateUserDTO";
 //import { FilterQuery } from "mongoose";
 

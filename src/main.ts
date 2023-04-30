@@ -2,7 +2,7 @@ import "reflect-metadata";
 import 'dotenv/config';
 
 import { AppInstance, ServerEnvironment } from "@expressots/core";
-import { container } from "./app-container";
+import container from "./app-container";
 import { ServerProvider } from '@providers/server/serverProvider';
 
 export async function bootstrap() {
