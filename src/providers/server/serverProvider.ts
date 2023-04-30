@@ -1,7 +1,13 @@
+//import { Environments } from "@expressots/core";
 import { DataBaseProvider } from "@providers/database/databaseProvider";
+import { provide } from "inversify-binding-decorators";
 
+@provide(ServerProvider)
 class ServerProvider {
-    constructor() {}
+
+    // async ConfigureServices(): Promise<void> {
+    //     Environments.checkAll();
+    // }
 
     async PostServerInit(): Promise<void> {
         await DataBaseProvider.Connect();
@@ -9,7 +15,7 @@ class ServerProvider {
     }
 
     async ServerShutdown(): Promise<void> {
-        await DataBaseProvider.Disconect
+        DataBaseProvider.Disconect
         process.exit(0);
     }
 }
