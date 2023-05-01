@@ -1,55 +1,39 @@
 import { Model } from "mongoose";
-import { FilterOptions, IUserRepository } from "./IUserRepository";
 import { ICreateUser } from "./dto/ICreateUserDTO";
 import { IUser } from "@entities/Users";
 import { provide } from "inversify-binding-decorators";
+import { UserModel } from "@entities/Users";
+import { FilterOptions, IUsersRepository } from "./IUserRepository";
 
 @provide(UserRepository)
-export class UserRepository implements IUserRepository<IUser> {
-    constructor(protected model = Model) { }
+class UserRepository implements IUsersRepository {
+    // protected model: Model<IUser>;
 
-    async create(data: ICreateUser): Promise<IUser | null> {
-        try {
-            const model = new this.model(data)
-            const createUser = await model.save();
-            return createUser;
-        } catch (error) {
-            if (process.env.NODE_ENV === 'development') console.log(error);
+    // constructor() {
+    //     this.model = UserModel;
+    // }
 
-            return null;
-        }
+    async createUser({ name, email, password }: ICreateUser): Promise<IUser> {
+        const createdUser = await UserModel.create({ name, email, password });
+        //const createdUser = await model.save();
+        console.log('Repo =>', createdUser);
+
+        return createdUser;
     }
 
     async findAll(query: FilterOptions): Promise<IUser[]> {
-        try {
-            const users = await this.model.find(query);
-            return users;
-        } catch (error) {
-            if (process.env.NODE_ENV === 'development') console.log(error);
-
-            return [];
-        }
+        const users = await UserModel.find(query);
+        return users;
     }
 
     async findById(id: string): Promise<IUser | null> {
-        try {
-            return await this.model.findOne({ id });
-
-        } catch (error) {
-            if (process.env.NODE_ENV === 'development') console.log(error);
-
-            return null;
-        }
+        return await UserModel.findOne({ id });
     }
 
     async findByEmail(email: string): Promise<IUser | null> {
-        try {
-            return await this.model.findOne({ email })
-
-        } catch (error) {
-            if (process.env.NODE_ENV === 'development') console.log(error);
-
-            return null;
-        }
+        //const model = new this.model()
+        return await UserModel.findOne({ email })
     }
 }
+
+export { UserRepository };

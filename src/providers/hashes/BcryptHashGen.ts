@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
+import { provide } from 'inversify-binding-decorators';
 
+@provide(HashProvider)
 export class HashProvider {
     
     public async hashPass(password: string): Promise<string> {

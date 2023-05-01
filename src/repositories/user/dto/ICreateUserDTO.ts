@@ -4,8 +4,6 @@ export interface ICreateUser {
     password: string;
 }
 
-export interface ICreateUserReturn {
-    id: string;
-    name: string;
-    email: string;
-}
+// export interface ICreateUserReturn extends ICreateUser {
+//     id: string;
+// }
