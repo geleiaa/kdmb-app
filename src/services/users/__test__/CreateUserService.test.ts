@@ -1,26 +1,26 @@
 import 'reflect-metadata';
 import { CreateUserService } from '@services/users/create/CreateUserService';
 import { UserRepository } from '@repositories/user/UserRepository';
-//import { HashProvider } from '@providers/hashes/BcryptHashGen';
+import { HashProvider } from '@providers/hashes/BcryptHashGen';
 
-jest.mock('@repositories/user/UserRepository');
+//jest.mock('@repositories/user/UserRepository');
 
 const userRepo = new UserRepository();
-//const hashProv = new HashProvider();
+const hashProv = new HashProvider();
 
-const userCreate = new CreateUserService(userRepo);
+const userCreate = new CreateUserService(userRepo, hashProv);
 
 describe('Create User Service', () => {
     it('deve criar um usuário', async () => {
         const defaultUser = {
-            name: "TestUnit",
-            email: "unit@mail.com",
-            password: "12345"
+            name: "Test4",
+            email: "teste4@mail.com",
+            password: "1234567"
         };
 
         const user = await userCreate.execute(defaultUser);
-        console.log('=>', user);
+        console.log('service create =>', user);
 
-        expect(user).toEqual(expect.objectContaining({ id: expect.any(String)}));
-    })
+        expect(user).toEqual(expect.objectContaining({...defaultUser, ...{ password: expect.any(String)}}));
+    });
 })

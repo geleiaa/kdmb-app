@@ -7,6 +7,8 @@ export interface IUser extends IBaseModel {
     password: string;
 }
 
+
+
 const userSchema = new mongoose.Schema<IUser>(
     {
         name: {
@@ -18,22 +20,26 @@ const userSchema = new mongoose.Schema<IUser>(
             required: true,
             unique: true,
             lowercase: true,
-            //match: [/\S+@\S+\.\S+/, "Email não é valido"],
         },
         password: {
             type: String,
             required: true,
-            minlength: [6, "Senha precisa ser maior que 6 caracteres"],
+            minlength: [8, "Senha precisa ser maior que 8 caracteres"],
         },
-    }
+    },
     // {
-    //     toJSON: {
-    //         transform: (_, ret): void => {
-    //             ret.id = ret._id.toString();
-    //             delete ret._id;
-    //             delete ret.__v;
-    //         },
-    //     },
+    //     timestamps: true,
+    //     versionKey: false,
+    // }
+    {
+        toJSON: {
+            transform: (_, ret): void => {
+                // ret.id = ret._id.toString();
+                // delete ret._id;
+                delete ret.__v;
+            },
+        },
+    }    
 
 );
 

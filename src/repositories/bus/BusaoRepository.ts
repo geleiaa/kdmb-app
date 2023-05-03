@@ -1,7 +1,12 @@
 import { provide } from "inversify-binding-decorators";
-import { IBusao, busModel } from "../../entities/Busao";
+import { busModel } from "../../entities/Busao";
+import { BaseRepository } from "@repositories/BaseRepository";
+import { IBusao } from "../../entities/Busao";
 
 @provide(BusaoRepository)
-class BusaoRepository implements IBusaoRepository {
-    constructor() {}
+export class BusaoRepository extends BaseRepository<IBusao> {
+    constructor() {
+        super();
+        this.model = busModel;
+    }
 }

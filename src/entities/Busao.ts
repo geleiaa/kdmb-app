@@ -2,20 +2,34 @@ import { Schema, model } from "mongoose";
 import { IBaseModel } from "./IBaseModel";
 
 export interface IBusao extends IBaseModel {
-    linha: string;
     name: string;
+    linha: string;
+    direcao: number;
 }
 
 const busSchema = new Schema<IBusao>(
     {
-        linha: {
-            type: String,
-            required: [true, "Insira a linha do busão"]
-        },
         name: {
             type: String,
-            required: [true, "Insira o nome do busão"],
+            required: true
+        },
+        linha: {
+            type: String,
+            required: true
+        },
+        direcao: {
+            type: Number,
+            required: true
         }
+    },
+    {
+        toJSON: {
+            transform: (_, ret): void => {
+                // ret.id = ret._id.toString();
+                // delete ret._id;
+                delete ret.__v;
+            },
+        },
     }
 )
 
