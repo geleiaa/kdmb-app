@@ -1,7 +1,7 @@
 import { IBusao } from "@entities/Busao";
 import { AppError } from "@providers/error/AppError";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import { ICreateBusDTO } from "@services/bus/dto/CreateBusDTO";
+import { ICreateBusDTO, ICreateBusReturnDTO } from "@services/bus/dto/CreateBusDTO";
 import { provide } from "inversify-binding-decorators";
 
 @provide(CreateBusService)
@@ -9,7 +9,7 @@ class CreateBusService {
 
     constructor(private busRepo: BusaoRepository) {}
 
-    async execute({ name, linha, direcao }: ICreateBusDTO): Promise<IBusao | null> {
+    async execute({ name, linha, direcao }: ICreateBusDTO): Promise<ICreateBusReturnDTO | null> {
 
         const busExists = await this.busRepo.findByName(name);
 
@@ -19,7 +19,14 @@ class CreateBusService {
 
         const busao = await this.busRepo.create({ name, linha, direcao });
 
-        return busao;
+        let resp: ICreateBusReturnDTO;
+
+        resp = {
+            name: busao?.name as string,
+            status: 'succes'
+        }
+
+        return resp;
     }
 }
 

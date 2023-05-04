@@ -4,8 +4,10 @@ export interface ICreateUser {
     password: string;
 }
 
-export interface ICreateUserReturn extends ICreateUser {
-    id: string;
+export interface ICreateUserReturn {
+    //id: string;
+    name: string;
+    status: string;
 }
 
 export interface ILogin {
@@ -16,4 +18,5 @@ export interface ILogin {
 export interface ILoginResponse {
     name: string;
     token: string;
+    status: string;
 }

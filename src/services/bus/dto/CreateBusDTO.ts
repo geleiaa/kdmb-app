@@ -3,3 +3,8 @@ export interface ICreateBusDTO {
     linha: string;
     direcao: number;
 }
+
+export interface ICreateBusReturnDTO {
+    name: string;
+    status: string;
+}

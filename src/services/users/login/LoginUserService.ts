@@ -29,10 +29,15 @@ class LoginUserService {
 
         const token = this.jwtProvider.generateToken(userExists?.name as string);
 
-        return {
+        let resp: ILoginResponse;
+
+        resp = {
+            token,
             name: userExists?.name as string,
-            token
-        };
+            status: 'success'
+        }; 
+
+        return resp
     }
 }
 

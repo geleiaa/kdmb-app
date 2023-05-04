@@ -12,4 +12,5 @@ export interface IBaseRepository<T> {
     findByEmail(email: string): Promise<T | null>;
     findByName(name: string): Promise<T | null>;
     //update(id: T): T | null;
+    //delete(id: T): void;
 }
