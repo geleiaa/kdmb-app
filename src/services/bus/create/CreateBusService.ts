@@ -1,7 +1,7 @@
 import { IBusao } from "@entities/Busao";
 import { AppError } from "@providers/error/AppError";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import { ICreateBusDTO } from "@repositories/bus/dto/CreateBusDTO";
+import { ICreateBusDTO } from "@services/bus/dto/CreateBusDTO";
 import { provide } from "inversify-binding-decorators";
 
 @provide(CreateBusService)

@@ -1,9 +1,9 @@
 import { UserRepository } from "@repositories/user/UserRepository";
-import { ICreateUser } from "@repositories/user/dto/ICreateUserDTO";
+import { ICreateUser, ICreateUserReturn } from "@services/users/dto/ICreateUserDTO";
 import { HashProvider } from '@providers/hashes/BcryptHashGen';
 import { AppError } from "@providers/error/AppError";
 import { provide } from "inversify-binding-decorators";
-import { IUser } from "@entities/Users";
+import { IExistingUser, IUser } from "@entities/Users";
 
 @provide(CreateUserService)
 class CreateUserService {

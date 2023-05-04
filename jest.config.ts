@@ -5,7 +5,7 @@ const root = resolve(__dirname);
 
 const jestConfig: JestConfigWithTsJest = {
     rootDir: root,
-    displayName: "unit-tests",
+    displayName: "functonal-tests",
     preset: "ts-jest",
     testEnvironment: "node",
     verbose: true,

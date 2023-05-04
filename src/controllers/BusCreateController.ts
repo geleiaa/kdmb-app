@@ -1,5 +1,5 @@
 import { IBusao } from "@entities/Busao";
-import { ICreateBusDTO } from "@repositories/bus/dto/CreateBusDTO";
+import { ICreateBusDTO } from "@services/bus/dto/CreateBusDTO";
 import { CreateBusService } from "@services/bus/create/CreateBusService";
 import { controller, httpPost, requestBody, response } from "inversify-express-utils";
 

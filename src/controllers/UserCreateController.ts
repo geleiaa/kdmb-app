@@ -1,5 +1,5 @@
 import { IUser } from "@entities/Users";
-import { ICreateUser } from "@repositories/user/dto/ICreateUserDTO";
+import { ICreateUser } from "@services/users/dto/ICreateUserDTO";
 import { CreateUserService } from "@services/users/create/CreateUserService";
 import { controller, httpPost, requestBody, response } from "inversify-express-utils";
 

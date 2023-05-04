@@ -7,6 +7,9 @@ export interface IUser extends IBaseModel {
     password: string;
 }
 
+export interface IExistingUser extends IUser {
+    id: string;
+}
 
 
 const userSchema = new mongoose.Schema<IUser>(
