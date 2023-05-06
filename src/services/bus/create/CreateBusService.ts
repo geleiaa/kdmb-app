@@ -1,32 +1,52 @@
-import { IBusao } from "@entities/Busao";
-import { AppError } from "@providers/error/AppError";
+import { AppError, Report, StatusCode } from "@expressots/core";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import { ICreateBusDTO, ICreateBusReturnDTO } from "@services/bus/dto/CreateBusDTO";
+import {
+    ICreateBusDTO,
+    ICreateBusReturnDTO,
+} from "@services/bus/dto/CreateBusDTO";
 import { provide } from "inversify-binding-decorators";
 
 @provide(CreateBusService)
 class CreateBusService {
-
     constructor(private busRepo: BusaoRepository) {}
 
-    async execute({ name, linha, direcao }: ICreateBusDTO): Promise<ICreateBusReturnDTO | null> {
+    async execute({
+        name,
+        linha,
+        direcao,
+        userId,
+    }: ICreateBusDTO): Promise<ICreateBusReturnDTO | null> {
+        try {
+            const busExists = await this.busRepo.findByName(name);
 
-        const busExists = await this.busRepo.findByName(name);
+            if (busExists) {
+                Report.Error(
+                    new AppError(
+                        StatusCode.BadRequest,
+                        "Busão ja cadastrado!!",
+                        "create bus service",
+                    ),
+                );
+            }
 
-        if(busExists) {
-            throw new AppError('Busão ja cadastrado!!', 400);
+            const busao = await this.busRepo.create({
+                name,
+                linha,
+                direcao,
+                userId,
+            });
+
+            let resp: ICreateBusReturnDTO;
+
+            resp = {
+                name: busao?.name as string,
+                status: "success",
+            };
+
+            return resp;
+        } catch (error) {
+            throw error;
         }
-
-        const busao = await this.busRepo.create({ name, linha, direcao });
-
-        let resp: ICreateBusReturnDTO;
-
-        resp = {
-            name: busao?.name as string,
-            status: 'succes'
-        }
-
-        return resp;
     }
 }
 

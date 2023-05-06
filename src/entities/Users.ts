@@ -1,16 +1,12 @@
 import mongoose from "mongoose";
 import { IBaseModel } from "./IBaseModel";
 
-export interface IUser extends IBaseModel {
+export interface IUser {
+    id?: string; // id opcional pqa tipagem do repository estava reclamando
     name: string;
     email: string;
     password: string;
 }
-
-export interface IExistingUser extends IUser {
-    id: string;
-}
-
 
 const userSchema = new mongoose.Schema<IUser>(
     {
@@ -42,8 +38,7 @@ const userSchema = new mongoose.Schema<IUser>(
                 delete ret.__v;
             },
         },
-    }    
-
+    },
 );
 
-export const UserModel = mongoose.model<IUser>('Users', userSchema);
+export const UserModel = mongoose.model<IUser>("Users", userSchema);

@@ -3,12 +3,11 @@ import { FilterOptions, IBaseRepository } from "./IBaseRepository";
 import { provide } from "inversify-binding-decorators";
 
 @provide(BaseRepository)
-export class BaseRepository<T> implements IBaseRepository<T>{
-    
+export class BaseRepository<T> implements IBaseRepository<T> {
     protected model!: Model<T>;
     // constructor(protected model: Model<T>){
     // }
-    
+
     async create(data: T): Promise<T | null> {
         const model = new this.model(data);
         const createdUser = await model.save();

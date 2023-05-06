@@ -5,22 +5,28 @@ export interface IBusao extends IBaseModel {
     name: string;
     linha: string;
     direcao: number;
+    userId: unknown;
 }
 
 const busSchema = new Schema<IBusao>(
     {
         name: {
             type: String,
-            required: true
+            required: true,
         },
         linha: {
             type: String,
-            required: true
+            required: true,
         },
         direcao: {
             type: Number,
-            required: true
-        }
+            required: true,
+        },
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "Users",
+            required: true,
+        },
     },
     {
         toJSON: {
@@ -30,7 +36,7 @@ const busSchema = new Schema<IBusao>(
                 delete ret.__v;
             },
         },
-    }
-)
+    },
+);
 
-export const busModel = model<IBusao>('Busao', busSchema);
+export const busModel = model<IBusao>("Busao", busSchema);

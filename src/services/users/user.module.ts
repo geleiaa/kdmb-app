@@ -5,7 +5,7 @@ import { LoginUserController } from "@controllers/user/LoginUserController";
 
 const UserModule: ContainerModule = CreateModule([
     UserCreateController,
-    LoginUserController
+    LoginUserController,
 ]);
 
 export { UserModule };

@@ -14,7 +14,8 @@
     "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint \"src/**/*.ts\" --fix"
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix"
   },
   "keywords": [],
   "dependencies": {

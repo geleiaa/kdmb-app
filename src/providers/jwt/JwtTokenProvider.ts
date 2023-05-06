@@ -1,6 +1,6 @@
-import 'dotenv/config';
-import { provide } from 'inversify-binding-decorators';
-import jwt from 'jsonwebtoken';
+import "dotenv/config";
+import { provide } from "inversify-binding-decorators";
+import jwt from "jsonwebtoken";
 
 @provide(JwtTokenProvider)
 export class JwtTokenProvider {
@@ -13,5 +13,4 @@ export class JwtTokenProvider {
     public static decodeToken(token: string) {
         return jwt.verify(token, String(process.env.JWT_SECRET));
     }
-
 }
