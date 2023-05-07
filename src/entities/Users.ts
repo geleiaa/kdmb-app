@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { IBaseModel } from "./IBaseModel";
+//import { IBaseModel } from "./IBaseModel";
 
 export interface IUser {
-    id?: string; // id opcional pqa tipagem do repository estava reclamando
+    id?: string; // id opcional pq a tipagem do repository estava reclamando
     name: string;
     email: string;
     password: string;

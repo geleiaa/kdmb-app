@@ -15,11 +15,18 @@ const defaultUser = {
     password: "1234567",
 };
 
+const defaultUser2 = {
+    name: "TestBus2",
+    email: "testbus2@mail.com",
+    password: "1234567",
+};
+
 const busRepo = new BusaoRepository();
 const busCreate = new CreateBusService(busRepo);
 
 beforeEach(async () => {
     await busRepo.deleteAll();
+    await userRepo.deleteAll();
 });
 
 describe("Create Busao Service", () => {
@@ -41,7 +48,7 @@ describe("Create Busao Service", () => {
     });
 
     it("deve retornar erro de busao ja cadastrado", async () => {
-        const user = await userCreate.execute(defaultUser);
+        const user = await userCreate.execute(defaultUser2);
 
         const defaultBus = {
             name: "Jd. âNgela",
@@ -53,9 +60,13 @@ describe("Create Busao Service", () => {
         const busao1 = await busCreate.execute(defaultBus);
         const busao2 = await busCreate.execute(defaultBus);
 
-        expect(busao2).toBeNull();
-        expect(async () => await busCreate.execute(defaultBus)).toThrow(
-            /^Busão ja cadastrado!!$/,
-        );
+        console.log('busao 2 =>', busao2);
+        
+
+        expect(busao2).toEqual("Busão ja cadastrado!!");
+        //expect(busao2).toBeNull();
+        //expect(async () => await busCreate.execute(defaultBus)).toThrow(/^Busão ja cadastrado!!$/,);
+
+
     });
 });

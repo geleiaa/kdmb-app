@@ -1,5 +1,5 @@
-import { Model } from "mongoose";
-import { FilterOptions, IBaseRepository } from "./IBaseRepository";
+import { FilterQuery, Model, PopulateOptions } from "mongoose";
+import { IBaseRepository } from "./IBaseRepository";
 import { provide } from "inversify-binding-decorators";
 
 @provide(BaseRepository)
@@ -14,13 +14,22 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return createdUser;
     }
 
-    async findAll(options: FilterOptions): Promise<T[]> {
-        const data = await this.model.find(options);
+    async findAll(query: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null> {
+        const data = await this.model
+        .find(query)
+        .populate(populate)
+        .then((model) => model as T);
+
         return data;
     }
 
-    async findOne(options: FilterOptions): Promise<T | null> {
-        return await this.model.findOne(options);
+    async findOne(query: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null> {
+        const data = await this.model
+        .findOne(query)
+        .populate(populate)
+        .then((model) => model as T);
+
+        return data;
     }
 
     async findById(id: string): Promise<T | null> {

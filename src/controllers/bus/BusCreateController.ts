@@ -1,4 +1,3 @@
-import { IBusao } from "@entities/Busao";
 import {
     ICreateBusDTO,
     ICreateBusReturnDTO,

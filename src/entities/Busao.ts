@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import { IBaseModel } from "./IBaseModel";
 
 export interface IBusao extends IBaseModel {
     name: string;
     linha: string;
     direcao: number;
-    userId: unknown;
+    userId: any;
 }
 
 const busSchema = new Schema<IBusao>(
