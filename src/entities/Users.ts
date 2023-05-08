@@ -19,11 +19,13 @@ const userSchema = new mongoose.Schema<IUser>(
             required: true,
             unique: true,
             lowercase: true,
+            select: false
         },
         password: {
             type: String,
             required: true,
             minlength: [8, "Senha precisa ser maior que 8 caracteres"],
+            select: false
         },
     },
     // {
@@ -33,9 +35,9 @@ const userSchema = new mongoose.Schema<IUser>(
     {
         toJSON: {
             transform: (_, ret): void => {
+                delete ret.__v;
                 // ret.id = ret._id.toString();
                 // delete ret._id;
-                delete ret.__v;
             },
         },
     },

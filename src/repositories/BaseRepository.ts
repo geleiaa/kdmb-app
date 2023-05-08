@@ -37,8 +37,8 @@ export class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     async findByEmail(email: string): Promise<T | null> {
-        return await this.model.findOne({ email });
-    }
+        return await this.model.findOne({ email }).select('+email').select('+password'); 
+    }                                               // campos no-select no schema
 
     async findByName(name: string): Promise<T | null> {
         return await this.model.findOne({ name });

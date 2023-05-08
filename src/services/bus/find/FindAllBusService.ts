@@ -8,9 +8,9 @@ import { IBusao } from "@entities/Busao";
 class FindAllBusService {
     constructor(private busRepo: BusaoRepository){}
 
-    async execute(): Promise<IBusao | null> {
+    async execute(id: string): Promise<IBusao | null> {
         try{
-            const busoes = await this.busRepo.findAll({}, ['userId']);
+            const busoes = await this.busRepo.findAll({ userId: id }, ['userId']);            
 
             if(!busoes) {
                 Report.Error( new AppError(StatusCode.NotFound, 'algo deu errado!!', 'find-all-bus'));
