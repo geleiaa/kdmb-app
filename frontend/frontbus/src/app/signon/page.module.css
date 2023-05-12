@@ -1,0 +1,64 @@
+.card {
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    margin:5% auto;
+}
+
+.card_header {
+    background-color: #333;
+    padding: 16px;
+    text-align: center;
+}
+
+.card_header .text_header {
+    margin: 0;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+}
+
+.card_body {
+    padding: 16px;
+}
+
+.form_group {
+    margin-bottom: 10px;
+}
+
+.form_group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+
+.form_group input[type="text"],
+.form_group input[type="email"],
+.form_group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    padding: 12px 24px;
+    margin-left: 13px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer
+}
+
+.btn:hover {
+    background-color: #ccc;
+    color: #333;
+}
