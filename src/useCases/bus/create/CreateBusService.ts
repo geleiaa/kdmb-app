@@ -1,9 +1,6 @@
 import { AppError, Report, StatusCode } from "@expressots/core";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import {
-    ICreateBusDTO,
-    ICreateBusReturnDTO,
-} from "@services/bus/dto/CreateBusDTO";
+import { ICreateBusDTO, ICreateBusReturnDTO } from "./CreateBusDTO";
 import { provide } from "inversify-binding-decorators";
 
 @provide(CreateBusService)

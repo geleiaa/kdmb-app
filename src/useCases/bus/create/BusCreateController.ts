@@ -1,8 +1,8 @@
 import {
     ICreateBusDTO,
     ICreateBusReturnDTO,
-} from "@services/bus/dto/CreateBusDTO";
-import { CreateBusService } from "@services/bus/create/CreateBusService";
+} from "useCases/bus/create/CreateBusDTO";
+import { CreateBusService } from "useCases/bus/create/CreateBusService";
 import {
     controller,
     httpPost,

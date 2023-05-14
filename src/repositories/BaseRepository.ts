@@ -14,20 +14,26 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return createdUser;
     }
 
-    async findAll(query: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null> {
+    async findAll(
+        query: FilterQuery<T>,
+        populate: string[] | PopulateOptions | PopulateOptions[],
+    ): Promise<T | null> {
         const data = await this.model
-        .find(query)
-        .populate(populate)
-        .then((model) => model as T);
+            .find(query)
+            .populate(populate)
+            .then((model) => model as T);
 
         return data;
     }
 
-    async findOne(query: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null> {
+    async findOne(
+        query: FilterQuery<T>,
+        populate: string[] | PopulateOptions | PopulateOptions[],
+    ): Promise<T | null> {
         const data = await this.model
-        .findOne(query)
-        .populate(populate)
-        .then((model) => model as T);
+            .findOne(query)
+            .populate(populate)
+            .then((model) => model as T);
 
         return data;
     }
@@ -37,8 +43,11 @@ export class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     async findByEmail(email: string): Promise<T | null> {
-        return await this.model.findOne({ email }).select('+email').select('+password'); 
-    }                                               // campos no-select no schema
+        return await this.model
+            .findOne({ email })
+            .select("+email")
+            .select("+password");
+    } // campos no-select no schema
 
     async findByName(name: string): Promise<T | null> {
         return await this.model.findOne({ name });

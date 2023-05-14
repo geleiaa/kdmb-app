@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { CreateUserService } from "@services/users/create/CreateUserService";
+import { CreateUserService } from "@useCases/users/create/CreateUserService";
 import { UserRepository } from "@repositories/user/UserRepository";
 import { HashProvider } from "@providers/hashes/BcryptHashGen";
 

@@ -1,5 +1,5 @@
 import { UserRepository } from "@repositories/user/UserRepository";
-import { ICreateUser, ICreateUserReturn } from "@services/users/dto/IUserDTO";
+import { ICreateUser, ICreateUserReturn } from "./IUserCreateDTO";
 import { HashProvider } from "@providers/hashes/BcryptHashGen";
 import { provide } from "inversify-binding-decorators";
 import { AppError, Report, StatusCode } from "@expressots/core";

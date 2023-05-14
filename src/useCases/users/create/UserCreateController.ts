@@ -1,6 +1,9 @@
 import { IUser } from "@entities/Users";
-import { ICreateUser, ICreateUserReturn } from "@services/users/dto/IUserDTO";
-import { CreateUserService } from "@services/users/create/CreateUserService";
+import {
+    ICreateUser,
+    ICreateUserReturn,
+} from "@useCases/users/create/IUserCreateDTO";
+import { CreateUserService } from "useCases/users/create/CreateUserService";
 import {
     controller,
     httpPost,

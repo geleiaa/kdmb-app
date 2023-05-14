@@ -3,6 +3,17 @@ import HeaderNav from "../components/HeaderNav";
 import Footer from "../components/Footer";
 import styles from './page.module.css';
 
+const busao = {
+  name: "TERM. CAPELINHA",
+  linha: "6475-10",
+  direcao: 1,
+  location: {
+    lat: "1234",
+    lng: "5678"
+  },
+  previsao: "17:00"
+}
+
 export default function Home() {
   return (
     <>
@@ -15,26 +26,23 @@ export default function Home() {
       </Head>
       <HeaderNav />
       <section>
-        <div>
-          <label className={styles.wrapper}>
-            <input type="text" placeholder="8000-10" name="text" className={styles.input} />
-            <span className={styles.placeholder}>N° Linha</span>
+        <div className={styles.bus_input}>
+          <label>
+            <input placeholder="N° da Linha" className={styles.input_style} type="text" />
           </label>
           &nbsp;&nbsp;
-          <label className={styles.wrapper}>
-            <input type="text" placeholder="Term. Seila" name="text" className={styles.input} />
-            <span className={styles.placeholder}>Nome</span>
+          <label>
+            <input placeholder="Nome do Bus" className={styles.input_style} type="text" />
           </label>
           &nbsp;&nbsp;
-          <label className={styles.wrapper}>
-            <input type="text" placeholder="1" name="text" className={styles.input} />
-            <span className={styles.placeholder}>Direção</span>
+          <label>
+            <input placeholder="Direção" className={styles.input_style} type="text" />
           </label>
         </div>
       </section>
 
       <section>
-
+        
         <div className={styles.card_container}>
           <div className={styles.card}>
             <div className={styles.card__header}>
@@ -47,52 +55,57 @@ export default function Home() {
                 /> */}
               </div>
 
-              <h3 className={styles.heading_tertirary}>
-                <span>The Forest Hiker</span>
-              </h3>
+              <h4 className={styles.heading_tertirary}>
+                <span>N° da linha: {busao.linha}</span>
+              </h4>
             </div>
 
             <div className={styles.card__details}>
-              <h4 className={styles.card__sub_heading}>Easy 5-day tour</h4>
-              <p className={styles.card__text}>
+              <h4 className={styles.card__sub_heading}>{busao.name}</h4>
+              {/* <p className={styles.card__text}>
                 Breathtaking hike through the Canadian Banff National Park
-              </p>
+              </p> */}
               <div className={styles.card__data}>
                 <svg className={styles.card__icon}>
-                  <use href=""></use>
+                  <use href=""></use> {/* icon image */}
                 </svg>
-                <span>Banff, Canada</span>
+                <span>Direção: {busao.direcao} <br />
+                  1-indo <br /> 2-voltando
+                </span>
               </div>
-              <div className={styles.card__data}>
+              {/* <div className={styles.card__data}>
                 <svg className={styles.card__icon}>
                   <use href=""></use>
                 </svg>
                 <span>April 2021</span>
-              </div>
+              </div> */}
               <div className={styles.card__data}>
                 <svg className={styles.card__icon}>
                   <use href=""></use>
                 </svg>
-                <span>3 stops</span>
+                <span>Previsão de chegada: {busao.previsao}</span>
               </div>
-              <div className={styles.card__data}>
+              {/* <div className={styles.card__data}>
                 <svg className={styles.card__icon}>
                   <use href=""></use>
                 </svg>
                 <span>25 people</span>
-              </div>
+              </div> */}
             </div>
 
             <div className={styles.card__footer}>
               <p>
-                <span className={styles.card__footer_value}>$297</span>
-                <span className={styles.card__footer_text}>per person</span>
+                <span className={styles.card__footer_value}>Localização:</span>
+                <span className={styles.card__footer_text}></span>
               </p>
-              <p className={styles.card__ratings}>
+              {/* <p className={styles.card__ratings}>
                 <span className={styles.card__footer_value}>4.9</span>
                 <span className={styles.card__footer_text}>rating (21)</span>
-              </p>
-              <a href="#" className={styles.btn}>Details</a>
+              </p> */}
+              <a href="#" className={styles.btn}>Detalhes<br/>
+              lat -{busao.location.lat}, <br/>
+              lng -{busao.location.lng}
+              </a>
             </div>
           </div>
         </div>

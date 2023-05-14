@@ -8,8 +8,14 @@ import { FilterQuery, PopulateOptions } from "mongoose";
 
 export interface IBaseRepository<T> {
     create(data: T): Promise<T | null>;
-    findAll(options: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null>;
-    findOne(options: FilterQuery<T>, populate: string[] | PopulateOptions | PopulateOptions[]): Promise<T | null>;
+    findAll(
+        options: FilterQuery<T>,
+        populate: string[] | PopulateOptions | PopulateOptions[],
+    ): Promise<T | null>;
+    findOne(
+        options: FilterQuery<T>,
+        populate: string[] | PopulateOptions | PopulateOptions[],
+    ): Promise<T | null>;
     findById(id: string): Promise<T | null>;
     findByEmail(email: string): Promise<T | null>;
     findByName(name: string): Promise<T | null>;

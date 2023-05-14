@@ -21,9 +21,7 @@
       "@entities/*": ["entities/*"],
       "@providers/*": ["providers/*"],
       "@repositories/*": ["repositories/*"],
-      "@controllers/*": ["controllers/*"],
-      "@services/*": ["services/*"],
-      //"@useCases/*": ["useCases/*"]
+      "@useCases/*": ["useCases/*"]
     },                         
   },
   "include": [

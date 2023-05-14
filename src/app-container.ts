@@ -1,6 +1,6 @@
 import { AppContainer } from "@expressots/core";
-import { UserModule } from "@services/users/user.module";
-import { BusModule } from "@services/bus/bus.module";
+import { UserModule } from "useCases/users/user.module";
+import { BusModule } from "useCases/bus/bus.module";
 //import { Container } from "inversify";
 //import { buildProviderModule } from "inversify-binding-decorators";
 

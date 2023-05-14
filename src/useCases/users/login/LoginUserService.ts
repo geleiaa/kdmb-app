@@ -1,5 +1,5 @@
 import { provide } from "inversify-binding-decorators";
-import { ILogin, ILoginResponse } from "../dto/IUserDTO";
+import { ILogin, ILoginResponse } from "./IUserLoginDTO";
 import { UserRepository } from "@repositories/user/UserRepository";
 import { HashProvider } from "@providers/hashes/BcryptHashGen";
 import { JwtTokenProvider } from "@providers/jwt/JwtTokenProvider";

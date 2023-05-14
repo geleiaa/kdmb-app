@@ -2,8 +2,8 @@ import styles from "./components.module.css";
 
 const Footer = () => {
     return (
-        <footer className={styles.header}>
-            <p><a href='https://github.com/geleiaa/kdmb' target="_blank">
+        <footer className={styles.footer}>
+            <p><a href='https://github.com/geleiaa/kdmb-app' target="_blank">
                 repo do projeto
             </a></p>
         </footer>

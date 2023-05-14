@@ -2,7 +2,7 @@ import { BusaoRepository } from "@repositories/bus/BusaoRepository";
 import { CreateBusService } from "../create/CreateBusService";
 import { UserRepository } from "@repositories/user/UserRepository";
 import { HashProvider } from "@providers/hashes/BcryptHashGen";
-import { CreateUserService } from "@services/users/create/CreateUserService";
+import { CreateUserService } from "@useCases/users/create/CreateUserService";
 import { FindAllBusService } from "../find/FindAllBusService";
 
 const userRepo = new UserRepository();
@@ -32,19 +32,18 @@ beforeEach(async () => {
     await userRepo.deleteAll();
 });
 
-describe('Find All Busoes Service', () => {
-    it('deve retornar todos os busões junto com user', async () => {
-
+describe("Find All Busoes Service", () => {
+    it("deve retornar todos os busões junto com user", async () => {
         const user = await userCreate.execute(defaultUser);
         const user2 = await userCreate.execute(defaultUser2);
-    
+
         const defaultBus = {
             name: "Jd. âNgela",
             linha: "737A-10",
             direcao: 2,
             userId: user?.id as string,
         };
-        
+
         const defaultBus2 = {
             name: "Jd. Jangadeiro",
             linha: "737A-10",
@@ -62,12 +61,18 @@ describe('Find All Busoes Service', () => {
         await busCreate.execute(defaultBus);
         await busCreate.execute(defaultBus2);
         await busCreate.execute(defaultBus3);
-        
 
         const allBus = await findAllBus.execute(user2?.id as string);
-        console.log('all bus', allBus);
+        console.log("all bus", allBus);
 
-        expect(allBus).toEqual(expect.arrayContaining([expect.objectContaining ({defaultBus, defaultBus2, defaultUser})]));
-
-    })
-})
+        expect(allBus).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    defaultBus,
+                    defaultBus2,
+                    defaultUser,
+                }),
+            ]),
+        );
+    });
+});

@@ -1,7 +1,7 @@
 .card_container {
-    max-width: 120rem;
+    max-width: 80rem;
     margin: 0 auto;
-    display: inline-flex;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 7rem;
 }
@@ -31,9 +31,9 @@
 
 .card__picture {
     position: relative;
-    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
-    height: 22rem;
+    /*-webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);*/
+    /*clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);*/
+    height: 18rem;
 }
 
 .card__picture_overlay {
@@ -132,54 +132,21 @@
 }
 
 /* inputs */
-.wrapper {
-    position: relative;
+.bus_input {
+    margin: auto;
+    padding: 1.5%;
 }
 
-.input {
-    width: 190px;
-    height: 35px;
+.input_style {
+    padding: 10px;
+    border: 2px solid #ccc;
     border-radius: 5px;
-    border: 2px #323232 solid;
-    padding: 5px 15px;
-    background-color: #e8e8e8;
-    font-size: 15;
-    font-weight: 500;
+    font-size: 16px;
+    color: #555;
+    outline: none;
 }
 
-.placeholder {
-    width: 65%;
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    text-align: center;
-    color: rgb(43, 128, 226);
-    background-color: #e8e8e8;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    transition: all 0.3s;
-    opacity: 0;
-}
-
-.input::placeholder {
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.input:focus+.placeholder {
-    opacity: 1;
-}
-
-.input:focus {
-    outline: 2px solid rgb(43, 128, 226);
-    border: none;
-    color: rgb(43, 128, 226);
-}
-
-.input:focus::placeholder {
-    opacity: 0;
+.input_style:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }

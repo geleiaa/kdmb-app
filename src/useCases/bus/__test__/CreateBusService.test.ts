@@ -1,6 +1,6 @@
-import { CreateBusService } from "@services/bus/create/CreateBusService";
+import { CreateBusService } from "@useCases/bus/create/CreateBusService";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import { CreateUserService } from "@services/users/create/CreateUserService";
+import { CreateUserService } from "@useCases/users/create/CreateUserService";
 import { HashProvider } from "@providers/hashes/BcryptHashGen";
 import { UserRepository } from "@repositories/user/UserRepository";
 
@@ -60,13 +60,10 @@ describe("Create Busao Service", () => {
         const busao1 = await busCreate.execute(defaultBus);
         const busao2 = await busCreate.execute(defaultBus);
 
-        console.log('busao 2 =>', busao2);
-        
+        console.log("busao 2 =>", busao2);
 
         expect(busao2).toEqual("Busão ja cadastrado!!");
         //expect(busao2).toBeNull();
         //expect(async () => await busCreate.execute(defaultBus)).toThrow(/^Busão ja cadastrado!!$/,);
-
-
     });
 });

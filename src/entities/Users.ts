@@ -19,13 +19,13 @@ const userSchema = new mongoose.Schema<IUser>(
             required: true,
             unique: true,
             lowercase: true,
-            select: false
+            select: false,
         },
         password: {
             type: String,
             required: true,
             minlength: [8, "Senha precisa ser maior que 8 caracteres"],
-            select: false
+            select: false,
         },
     },
     // {
