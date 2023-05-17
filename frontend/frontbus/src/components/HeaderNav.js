@@ -3,7 +3,7 @@ import styles from './components.module.css';
 const HeaderNav = () => {
     return (
         <header className={styles.header}>
-            <h1>Kd meu busão</h1>
+            <h1 className={styles.agaum}>Kd meu busão</h1>
             <nav>
                 <ul>
                     <li>

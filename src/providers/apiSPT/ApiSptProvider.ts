@@ -23,7 +23,7 @@ class ApiSptProvider {
         }
     }
 
-    async GetLines(line: string): Promise<any> {
+    async GetLines(line: string, direcao: number): Promise<any> {
         try {
             const auth = await this.ApiAuth();
             const getLine = await axios.get(
@@ -33,31 +33,51 @@ class ApiSptProvider {
                 },
             );
 
-            return getLine;
+            if (direcao == 1) return getLine.data[0];
+
+            return getLine.data[1];
         } catch (error) {
             Report.Error(new AppError(StatusCode.BadRequest, error as string));
         }
     }
 
-    async GetStops(line: string): Promise<any> {
+    async GetStops(line: string, direcao: number): Promise<any> {
         try {
             const auth = await this.ApiAuth();
-            const getLine = await this.GetLines(line);
+            const getLine = await this.GetLines(line, direcao);
 
             const getStops = await axios.get(
-                `${url}/Parada/BuscarParadasPorLinha?codigoLinha=${getLine.data[1].cl}`,
+                `${url}/Parada/BuscarParadasPorLinha?codigoLinha=${getLine.cl}`,
                 {
                     headers: { Cookie: auth },
                 },
             );
 
-            return getStops;
+            return getStops.data;
         } catch (error) {
             Report.Error(new AppError(StatusCode.BadRequest, error as string));
         }
     }
 
-    async GetLocation(line: string): Promise<any> {
+    async GetForecast(line: string, direcao: number): Promise<any> {
+        try {
+            const auth = await this.ApiAuth();
+            const getLine = await this.GetLines(line, direcao);
+
+            const getForecast = await axios.get(
+                `${url}/Previsao/Linha?codigoLinha=${getLine.cl}`,
+                {
+                    headers: { Cookie: auth },
+                },
+            );
+
+            return getForecast.data;
+        } catch (error) {
+            Report.Error(new AppError(StatusCode.BadRequest, error as string));
+        }
+    }
+
+    /*async GetLocation(line: string): Promise<any> {
         try {
             const auth = await this.ApiAuth();
             const getLine = await this.GetLines(line);
@@ -73,9 +93,7 @@ class ApiSptProvider {
         } catch (error) {
             Report.Error(new AppError(StatusCode.BadRequest, error as string));
         }
-    }
+    } */
 }
-
-// const apiSptProvider = new ApiSptProvider();
 
 export { ApiSptProvider };

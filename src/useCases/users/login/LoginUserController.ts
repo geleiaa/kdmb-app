@@ -1,6 +1,6 @@
 import { StatusCode } from "@expressots/core";
-import { ILogin, ILoginResponse } from "@useCases/users/create/IUserCreateDTO";
-import { LoginUserService } from "useCases/users/login/LoginUserService";
+import { ILogin, ILoginResponse } from "./IUserLoginDTO";
+import { LoginUserService } from "@useCases/users/login/LoginUserService";
 import { Response } from "express";
 import {
     controller,

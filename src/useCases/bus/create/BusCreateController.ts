@@ -2,7 +2,7 @@ import {
     ICreateBusDTO,
     ICreateBusReturnDTO,
 } from "useCases/bus/create/CreateBusDTO";
-import { CreateBusService } from "useCases/bus/create/CreateBusService";
+import { CreateBusService } from "@useCases/bus/create/CreateBusService";
 import {
     controller,
     httpPost,

@@ -13,13 +13,12 @@ const jestConfig: JestConfigWithTsJest = {
     setupFilesAfterEnv: ['<rootDir>/test/jest-setup.ts'],
     testMatch: ["<rootDir>/src/**/*.test.ts"],
     moduleNameMapper: {
-        //'@src/(.*)': '<rootDir>/src/$1',
-        //'@test/(.*)': '<rootDir>/test/$1',
+        '@src/(.*)': '<rootDir>/src/$1',
+        '@test/(.*)': '<rootDir>/test/$1',
         '@entities/(.*)': '<rootDir>/src/entities/$1',
         '@providers/(.*)': '<rootDir>/src/providers/$1',
         '@repositories/(.*)': '<rootDir>/src/repositories/$1',
-        '@controllers/(.*)': '<rootDir>/src/controllers/$1',
-        '@services/(.*)': '<rootDir>/src/services/$1'
+        '@useCases/(.*)': '<rootDir>/src/useCases/$1'
     },
     //automock: false,
     //coverageDirectory: "./coverage",

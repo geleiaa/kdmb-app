@@ -1,6 +1,6 @@
 import { AuthMiddleware } from "@providers/middlewares/AuthMiddleware";
-import { IFindAllBusResponseDTO } from "useCases/bus/create/CreateBusDTO";
-import { FindAllBusService } from "useCases/bus/find/FindAllBusService";
+import { IFindAllBusResponseDTO } from "./IFindAllBusDTO";
+import { FindAllBusService } from "@useCases/bus/find/FindAllBusService";
 import {
     controller,
     httpGet,
