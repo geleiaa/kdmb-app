@@ -1,9 +1,8 @@
-export interface BusInfo {
+export interface BusInfoNormalized {
     name: string;
     linha: string;
-    direcao: number; // 1 = t. principal, 2 = t. secundario
-    paradas: string[];
-    previsao: string;
+    direcao: number;
+    paradas: string;
 }
 
 // Api STP reponse data
@@ -25,5 +24,3 @@ export interface GetStopsReturn {
     py: number;
     px: number;
 }
-
-export interface GetForecastReturn {}

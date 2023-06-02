@@ -1,5 +1,5 @@
 //import { AuthMiddleware } from "@providers/middlewares/AuthMiddleware";
-import { GetApiSptService } from "@useCases/bus/get_bus_info/GetApiSptService";
+import { GetBusDataService } from "@useCases/bus/get_bus_data/GetBusDataService";
 import {
     controller,
     httpGet,
@@ -8,8 +8,8 @@ import {
 } from "inversify-express-utils";
 
 @controller("/bus")
-class GetBusFromFrontend {
-    constructor(private getApiService: GetApiSptService) {}
+class GetBusDataController {
+    constructor(private getApiService: GetBusDataService) {}
 
     @httpGet("/line/:line/direction/:dir")
     async execute(
@@ -17,10 +17,10 @@ class GetBusFromFrontend {
         @requestParam("dir") dir: number,
         @response() res: any,
     ): Promise<any> {
-        const busao = await this.getApiService.fetchData(line, dir);
+        const busao = await this.getApiService.fetchBusData(line, dir);
 
         res.send(busao);
     }
 }
 
-export { GetBusFromFrontend };
+export { GetBusDataController };

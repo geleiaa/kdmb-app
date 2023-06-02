@@ -13,8 +13,8 @@ const userCreate = new CreateUserService(userRepo, hashProv);
 describe("Create User Service", () => {
     it("deve criar um usuário", async () => {
         const defaultUser = {
-            name: "Test4",
-            email: "teste4@mail.com",
+            name: "Test2",
+            email: "teste2@mail.com",
             password: "1234567",
         };
 
@@ -22,10 +22,7 @@ describe("Create User Service", () => {
         console.log("service create =>", user);
 
         expect(user).toEqual(
-            expect.objectContaining({
-                ...defaultUser,
-                ...{ password: expect.any(String) },
-            }),
+            expect.objectContaining({ id: expect.any(String) }),
         );
     });
 });

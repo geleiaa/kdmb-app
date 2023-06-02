@@ -11,7 +11,7 @@ class ApiSptProvider {
             const resp = await axios.post(
                 `${url}/Login/Autenticar?token=${process.env.API_SPT_KEY}`,
             );
-            return resp.headers["set-cookie"]; //auth cookie da api
+            return resp.headers["set-cookie"]; //auth cookie da api spt
         } catch (error) {
             Report.Error(
                 new AppError(
@@ -23,7 +23,7 @@ class ApiSptProvider {
         }
     }
 
-    async GetLines(line: string, direcao: number): Promise<any> {
+    async GetLines(line: string, direction: number): Promise<any> {
         try {
             const auth = await this.ApiAuth();
             const getLine = await axios.get(
@@ -33,7 +33,7 @@ class ApiSptProvider {
                 },
             );
 
-            if (direcao == 1) return getLine.data[0];
+            if (direction == 1) return getLine.data[0];
 
             return getLine.data[1];
         } catch (error) {
@@ -41,10 +41,10 @@ class ApiSptProvider {
         }
     }
 
-    async GetStops(line: string, direcao: number): Promise<any> {
+    async GetStops(line: string, direction: number): Promise<any> {
         try {
             const auth = await this.ApiAuth();
-            const getLine = await this.GetLines(line, direcao);
+            const getLine = await this.GetLines(line, direction);
 
             const getStops = await axios.get(
                 `${url}/Parada/BuscarParadasPorLinha?codigoLinha=${getLine.cl}`,
@@ -59,13 +59,13 @@ class ApiSptProvider {
         }
     }
 
-    async GetForecast(line: string, direcao: number): Promise<any> {
+    async GetForecast(stopId: number, lineId: number): Promise<any> {
         try {
             const auth = await this.ApiAuth();
-            const getLine = await this.GetLines(line, direcao);
+            // const getLine = await this.GetLines(line, direcao);
 
             const getForecast = await axios.get(
-                `${url}/Previsao/Linha?codigoLinha=${getLine.cl}`,
+                `${url}/Previsao?codigoParada=${stopId}&codigoLinha=${lineId}`,
                 {
                     headers: { Cookie: auth },
                 },
