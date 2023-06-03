@@ -1,15 +1,6 @@
 import { useState } from "react";
 import styles from "./components.module.css"
 
-// const busForecast = [
-//     {
-//         hratual: '20:09',
-//         previsao: '23:11',
-//         paradaId: 4200953,
-//         parada: 'PARADA ROBERTO SELMI DEI B/C'
-//     }
-// ]
-
 const BusStops = ({ busStops }) => {
     const [optValue, getOptVal] = useState("");
 
@@ -19,8 +10,6 @@ const BusStops = ({ busStops }) => {
         fetch(`http://localhost:1234/bus/bus-stop/${paradaId}/bus-line/${busStops[0].lineId}`)
             .then((resp) => resp.json())
             .then((data) => getOptVal(data));
-
-        console.log('data 2 =>', optValue);
     }
 
     return (
@@ -47,15 +36,20 @@ const BusStops = ({ busStops }) => {
                 </select>
             </div>
             <div className={styles.card__data}>
-                {
-                    optValue
+                <div>
+                    {
+                        optValue
 
-                        ? optValue.map(val =>
-                            <p className={styles.card__text}>Previsão em &#8593; - {val.previsao}</p>
-                        )
+                            ? optValue.map(val =>
+                                <spam>
+                                    Previsão de chegada
+                                    <p className={styles.card__text}> as {val.previsao}</p>
+                                </spam>
+                            )
 
-                        : <p></p>
-                }
+                            : <p></p>
+                    }
+                </div>
             </div>
         </>
     )

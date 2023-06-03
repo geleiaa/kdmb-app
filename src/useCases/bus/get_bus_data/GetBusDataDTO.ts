@@ -1,4 +1,5 @@
 export interface BusInfoNormalized {
+    lineId: number;
     name: string;
     linha: string;
     direcao: number;

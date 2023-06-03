@@ -5,12 +5,12 @@ import { AppError, Report, StatusCode } from "@expressots/core";
 
 @provide(GetBusForecastService)
 class GetBusForecastService {
-    constructor(private apiProvider: ApiSptProvider) {}
+    constructor(private apiProvider: ApiSptProvider) { }
 
     private async getForecastFromApi(
         busStop: number,
         busLine: number,
-    ): Promise<GetForecastReturn | undefined> {
+    ): Promise<GetForecastReturn | void> {
         try {
             return await this.apiProvider.GetForecast(busStop, busLine);
         } catch (err) {
@@ -27,25 +27,19 @@ class GetBusForecastService {
     public async fetchForecastBusData(
         busStop: number,
         busLine: number,
-    ): Promise<BusForecastNormalized> {
+    ): Promise<BusForecastNormalized[]> {
         const lineForecast = await this.getForecastFromApi(busStop, busLine);
 
-        console.log("fetchData", lineForecast);
-
-        return this.normalizeForecastData([{ lineForecast }]);
+        return this.normalizeForecastData([lineForecast]);
     }
 
-    public normalizeForecastData(data: any): BusForecastNormalized {
-        const forecastData = data.map((fore: any) => ({
+    public normalizeForecastData(data: any[]): BusForecastNormalized[] {
+        return data.map((fore: any) => ({
             hratual: fore.hr,
             previsao: fore.p.l[0].vs[0].t,
             paradaId: fore.p.cp,
             parada: fore.p.np,
         }));
-
-        console.log("nomalized =>", forecastData);
-
-        return forecastData;
     }
 }
 

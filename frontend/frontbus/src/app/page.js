@@ -6,66 +6,6 @@ import styles from './page.module.css';
 import { useRef, useState } from "react";
 import BusCard from "@/components/BusCard";
 
-// const busData = [
-//   {
-//     lineId: 1317,
-//     name: "TERM. BANDEIRA",
-//     linha: "6475-10",
-//     direcao: 1,
-//     paradas: [
-//       {
-//         cp: 706325,
-//         np: "PARADA 14 BIS B/C",
-//         ed: "",
-//         py: -23.555934,
-//         px: -46.650112
-//       },
-//       {
-//         cp: 3407076,
-//         np: "Parada Marina Cintra - B/C",
-//         ed: "",
-//         py: -23.577172,
-//         px: -46.672544
-//       },
-//       {
-//         cp: 4200953,
-//         np: "GETULIO VARGAS B/C",
-//         ed: "R DOUTOR PLINIO BARRETO/ R PROFESSOR PICAROLO",
-//         py: -23.558836,
-//         px: -46.653843
-//       },
-//       {
-//         cp: 440015158,
-//         np: "ESTADOS UNIDOS B/C",
-//         ed: "R CRAVINHOS/ R HAITI",
-//         py: -23.570012,
-//         px: -46.661799
-//       },
-//       {
-//         cp: 440015161,
-//         np: "JOSE MARIA LISBOA B/C",
-//         ed: "R JOSE MARIA LISBOA/ AL FRANCA",
-//         py: -23.566834,
-//         px: -46.658743
-//       },
-//       {
-//         cp: 440015164,
-//         np: "GUIANAS B/C",
-//         ed: "AV BRASIL/ R ESPERIA",
-//         py: -23.574389,
-//         px: -46.667594
-//       },
-//       {
-//         cp: 670016557,
-//         np: "PARADA MUSEU JUDAICO DE SP - B/C",
-//         ed: "VDTO MARTINHO PRADO/ R MAJOR QUEDINHO",
-//         py: -23.551241,
-//         px: -46.64583
-//       }
-//     ]
-//   }
-// ]
-
 export default function Home() {
   const [busao, getbusaoData] = useState('');
 
@@ -81,8 +21,6 @@ export default function Home() {
     fetch(`http://localhost:1234/bus/line/${line}/direction/${dir}`)
       .then((resp) => resp.json())
       .then((data) => getbusaoData(data));
-
-    console.log('data =>', busao);
   }
 
   return (
