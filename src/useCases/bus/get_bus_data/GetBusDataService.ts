@@ -5,7 +5,7 @@ import {
     BusInfoNormalized,
     GetLineReturn,
     GetStopsReturn,
-} from "./GetBusDataDTO";
+} from "./IGetBusDataDTO";
 
 @provide(GetBusDataService)
 class GetBusDataService {

@@ -1,18 +1,18 @@
 import { AppError, Report, StatusCode } from "@expressots/core";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
-import { ICreateBusDTO, ICreateBusReturnDTO } from "./CreateBusDTO";
+import { ICreateBusDTO, ICreateBusReturnDTO } from "./ICreateBusDTO";
 import { provide } from "inversify-binding-decorators";
 
 @provide(CreateBusService)
 class CreateBusService {
-    constructor(private busRepo: BusaoRepository) {}
+    constructor(private busRepo: BusaoRepository) { }
 
     async execute({
         name,
         linha,
         direcao,
         userId,
-    }: ICreateBusDTO): Promise<ICreateBusReturnDTO | null> {
+    }: ICreateBusDTO): Promise<ICreateBusReturnDTO | undefined> {
         try {
             const busExists = await this.busRepo.findByName(name);
 
@@ -42,7 +42,13 @@ class CreateBusService {
 
             return resp;
         } catch (error) {
-            throw error;
+            Report.Error(
+                new AppError(
+                    StatusCode.BadRequest,
+                    "Algo de errado!",
+                    "create-bus-service",
+                ),
+            );
         }
     }
 }

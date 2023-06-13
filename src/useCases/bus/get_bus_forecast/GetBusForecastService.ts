@@ -1,6 +1,6 @@
 import { ApiSptProvider } from "@providers/apiSPT/ApiSptProvider";
 import { provide } from "inversify-binding-decorators";
-import { BusForecastNormalized, GetForecastReturn } from "./GetBusForecastDTO";
+import { BusForecastNormalized, GetForecastReturn } from "./IGetBusForecastDTO";
 import { AppError, Report, StatusCode } from "@expressots/core";
 
 @provide(GetBusForecastService)

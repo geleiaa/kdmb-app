@@ -11,9 +11,9 @@ class LoginUserService {
         private userRepo: UserRepository,
         private hashProvider: HashProvider,
         private jwtProvider: JwtTokenProvider,
-    ) {}
+    ) { }
 
-    async execute({ email, password }: ILogin): Promise<ILoginResponse | null> {
+    async execute({ email, password }: ILogin): Promise<ILoginResponse | undefined> {
         try {
             const userExists = await this.userRepo.findByEmail(email);
 
@@ -46,18 +46,23 @@ class LoginUserService {
                 userExists?.id as string,
             );
 
-            let resp: ILoginResponse;
 
-            resp = {
+
+            let resp = {
                 token,
-                id: userExists?.id as string,
                 name: userExists?.name as string,
-                status: "success",
+                message: ""
             };
 
             return resp;
         } catch (error) {
-            throw error;
+            Report.Error(
+                new AppError(
+                    StatusCode.BadRequest,
+                    "Algo de errado!",
+                    "login service",
+                ),
+            );
         }
     }
 }

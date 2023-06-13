@@ -8,11 +8,11 @@ export function AuthMiddleware(
     res: Response,
     next: NextFunction,
 ): void {
-    const jwtToken = req.headers.authorization;
+    const jwtToken = req.cookies['auth-token'];
 
     if (!jwtToken) {
         res.status(StatusCode.Unauthorized).json({
-            message: "Você NÃO esta autenticado (noTk)!!",
+            message: "Você NÃO esta autenticado!!",
         });
     }
 

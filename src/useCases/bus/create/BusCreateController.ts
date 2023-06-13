@@ -1,7 +1,7 @@
 import {
     ICreateBusDTO,
     ICreateBusReturnDTO,
-} from "useCases/bus/create/CreateBusDTO";
+} from "@useCases/bus/create/ICreateBusDTO";
 import { CreateBusService } from "@useCases/bus/create/CreateBusService";
 import {
     controller,
@@ -14,7 +14,7 @@ import { AuthMiddleware } from "@providers/middlewares/AuthMiddleware";
 
 @controller("/bus/create")
 class BusCreateController {
-    constructor(private createBusService: CreateBusService) {}
+    constructor(private createBusService: CreateBusService) { }
 
     @httpPost("/", AuthMiddleware)
     async execute(

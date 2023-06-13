@@ -39,7 +39,9 @@ export class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     async findById(id: string): Promise<T | null> {
-        return await this.model.findOne({ id });
+        return await this.model
+            .findOne({ id })
+            .select("+email");
     }
 
     async findByEmail(email: string): Promise<T | null> {

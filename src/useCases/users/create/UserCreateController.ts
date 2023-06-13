@@ -10,17 +10,16 @@ import {
     response,
 } from "inversify-express-utils";
 import { StatusCode } from "@expressots/core";
-import { Response } from "express";
 
 @controller("/users/sign-on")
 class UserCreateController {
-    constructor(private createUserService: CreateUserService) {}
+    constructor(private createUserService: CreateUserService) { }
 
     @httpPost("/")
     async execute(
         @requestBody() data: ICreateUser,
-        @response() res: Response,
-    ): Promise<ICreateUserReturn | Response> {
+        @response() res: any,
+    ): Promise<ICreateUserReturn> {
         const userCreate = await this.createUserService.execute(data);
         return res.send({
             name: userCreate?.name,

@@ -1,5 +1,7 @@
 import styles from './components.module.css';
 
+const isLogued = false;
+
 const HeaderNav = () => {
     return (
         <header className={styles.header}>
@@ -7,17 +9,28 @@ const HeaderNav = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="/">Sobre</a>
+                        <a href="/about">Sobre</a>
                     </li>
+                    {
+                        isLogued
+                            ? <li><a href="/profile">Profile</a></li>
+                            : ""
+                    }
                     <li>
-                        <a href="/login">Login</a>
+                        {
+                            isLogued
+                                ? < a href="/login">Logout</a>
+                                : < a href="/login">Login</a>
+                        }
                     </li>
-                    <li>
-                        <a href="/signon">Registrar</a>
-                    </li>
+                    {
+                        isLogued
+                            ? ""
+                            : <li><a href="/signon">Registrar</a></li>
+                    }
                 </ul>
             </nav>
-        </header>
+        </header >
     )
 }
 

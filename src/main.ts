@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import { AppInstance, ServerEnvironment } from "@expressots/core";
 import container from "./app-container";
@@ -11,6 +12,7 @@ export async function bootstrap() {
     const app = AppInstance.create(container, [
         express.json({ limit: "50mb" }),
         cors(),
+        cookieParser()
     ]);
     ServerProvider.PostServerInit();
     app.listen(Number(process.env.APP_PORT), ServerEnvironment.Development);

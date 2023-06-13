@@ -1,4 +1,3 @@
-//import { IBusao } from "@entities/Busao";
 import { AppError, Report, StatusCode } from "@expressots/core";
 import { BusaoRepository } from "@repositories/bus/BusaoRepository";
 import { provide } from "inversify-binding-decorators";
@@ -6,9 +5,9 @@ import { IBusao } from "@entities/Busao";
 
 @provide(FindAllBusService)
 class FindAllBusService {
-    constructor(private busRepo: BusaoRepository) {}
+    constructor(private busRepo: BusaoRepository) { }
 
-    async execute(id: string): Promise<IBusao | null> {
+    async execute(id: string): Promise<IBusao | undefined | null> {
         try {
             const busoes = await this.busRepo.findAll({ userId: id }, [
                 "userId",
@@ -26,7 +25,13 @@ class FindAllBusService {
 
             return busoes;
         } catch (error) {
-            throw error;
+            Report.Error(
+                new AppError(
+                    StatusCode.BadRequest,
+                    "Algo de errado!",
+                    "find-bus-service",
+                ),
+            );
         }
     }
 }

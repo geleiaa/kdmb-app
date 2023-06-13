@@ -9,13 +9,13 @@ class CreateUserService {
     constructor(
         private userRepo: UserRepository,
         private hashProvider: HashProvider,
-    ) {}
+    ) { }
 
     async execute({
         name,
         email,
         password,
-    }: ICreateUser): Promise<ICreateUserReturn | null> {
+    }: ICreateUser): Promise<ICreateUserReturn | undefined> {
         try {
             const userExists = await this.userRepo.findByEmail(email);
 
@@ -37,18 +37,21 @@ class CreateUserService {
                 password: hashedPass,
             });
 
-            let resp: ICreateUserReturn;
-
-            resp = {
+            let resp = {
                 id: user?.id as string,
                 name: user?.name as string,
-                email: user?.email as string,
-                status: "success",
+                email: user?.email as string
             };
 
             return resp;
         } catch (error) {
-            throw error;
+            Report.Error(
+                new AppError(
+                    StatusCode.BadRequest,
+                    "Algo deu errado!",
+                    "create-user-service",
+                ),
+            );
         }
     }
 }

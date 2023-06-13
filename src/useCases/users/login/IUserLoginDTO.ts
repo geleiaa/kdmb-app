@@ -4,8 +4,7 @@ export interface ILogin {
 }
 
 export interface ILoginResponse {
-    id: string;
-    name: string;
     token: string;
-    status: string;
+    name: string;
+    message: string;
 }

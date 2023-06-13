@@ -1,30 +1,34 @@
 import { StatusCode } from "@expressots/core";
 import { ILogin, ILoginResponse } from "./IUserLoginDTO";
 import { LoginUserService } from "@useCases/users/login/LoginUserService";
-import { Response } from "express";
 import {
     controller,
     httpPost,
     requestBody,
     response,
 } from "inversify-express-utils";
+import { Response } from "express";
 
 @controller("/users/login")
 class LoginUserController {
-    constructor(private loginUserService: LoginUserService) {}
+    constructor(private loginUserService: LoginUserService) { }
 
     @httpPost("/")
     async execute(
         @requestBody() data: ILogin,
         @response() res: Response,
     ): Promise<ILoginResponse | Response> {
-        const userLogged = await this.loginUserService.execute(data);
-        return res.send({
-            name: userLogged?.name,
-            token: userLogged?.token,
-            status: StatusCode.OK,
-            message: "Você logou!!",
-        });
+        const user = await this.loginUserService.execute(data);
+
+        return res
+            .cookie('auth-token', user?.token, {
+                httpOnly: true
+            })
+            .status(StatusCode.OK).json({
+                token: user?.token,
+                name: user?.name,
+                message: "Você logou!!"
+            });
     }
 }
 

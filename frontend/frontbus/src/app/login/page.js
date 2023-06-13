@@ -17,10 +17,10 @@ const sendReqForBackend = async (email, password) => {
         });
 
         const data = await resp.json();
-        
+
+        //localStorage.setItem('token', data.token)
+
         //if (data.message === "Você logou!!") RedirectPage();
-        
-        console.log('login =>', data);
 
         return data;
 
@@ -31,7 +31,7 @@ const sendReqForBackend = async (email, password) => {
 
 const RedirectPage = () => {
     setTimeout(() => {
-        window.location.replace('/');
+        window.location.replace('/profile');
     }, 2000);
 }
 
